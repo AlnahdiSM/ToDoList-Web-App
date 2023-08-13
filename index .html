@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo List</title>
+  <link rel="stylesheet" href="./css/tailwind.css">
+  <link rel="stylesheet" href="./css/all.min.css">
+</head>
+<body class="h-screen bg-zinc-800 min-w-[912px] max-w-[1266px]">
+  <div class="Background w-full h-fit p-[100px] min-w-[912px]  flex-col justify-center items-center gap-8 inline-flex font-ElMessiri">
+    <div class="Navbar w-full  h-[130px] px-[30px] py-2.5 bg-indigo-500 rounded-[32px] justify-between items-center inline-flex">
+      <img class="Ellipse3 w-[103px] h-[103px] rounded-full border-4 border-green-400" src="./img/profile-picture.png" />
+      <div class="TodoLogo w-[155px] h-[52px] pl-2.5 pr-[11px] justify-center items-center flex">
+        <div class="Todotext text-center"><span class="text-green-400 text-[57px]  leading-[64px]">To</span><span class="text-white text-[57px]  leading-[64px]">Do </span></div>
+      </div>
+    </div>
+    <div class="Form w-full justify-center items-center gap-8  text-black inline-flex">
+      <button class="Label Buttons px-[72px] py-4 bg-indigo-500 rounded-2xl justify-start items-center gap-4 flex text-center text-white text-xl font-ElMessiri leading-normal" onclick="add()">إدخال</button>
+      <input class="Inputbox w-[896px] h-14 relative opacity-80 bg-white rounded-[32px] outline-none focus:border-green-400 focus:border-4 text-xl text-right px-6" type="text">
+    </div>
+    <div class="list w-full h-full"></div>
+  </div>
+  
+  <script>
+  function add(){
+    document.querySelector('.Label').onclick =function (){
+      if(document.querySelector('.Inputbox').value.length == 0){
+        alert("ادخل مهمة ")
+    }
+    else{
+      document.querySelector('.list').innerHTML+=`
+    <div class="TasksList w-full h-fit p-8 bg-indigo-500 flex-col justify-center items-center gap-8 inline-flex">
+        <div class="DeleteBottun self-stretch justify-start items-center gap-8 inline-flex">
+          <div class=" justify-center items-center flex">
+            <div class="Check w-[64px] h-[64px] relative">
+              <div class="Ellipse2 w-[64px] h-[64px] left-0 top-0 absolute bg-slate-100 rounded-full justify-center items-center inline-flex shadow-black shadow-lg"><i class="fa-solid fa-trash-can fa-beat fa-xl" style="color: #4c77c1;"></i></div>
+            </div>
+          </div>
+          <div class="TasckBackground w-full pl-[35px] pr-[35px] pt-[15.50px] pb-[16.50px] bg-white rounded-[32px] shadow-black shadow-lg justify-end items-center flex">
+            <div class="w-full text-right text-black text-2xl font-medium leading-normal">${document.querySelector('.Inputbox').value} </div>
+          </div>
+        </div>
+    </div>
+    `;
+    document.querySelector('.Inputbox').value="";
+    var claer=document.querySelectorAll('.DeleteBottun')
+    for(let i=0;i<claer.length;i++){
+      claer[i].onclick=function(){
+        this.parentNode.remove();
+      }
+    }
+
+      
+    }
+    }
+
+
+  }
+
+  </script>
+</body>
+</html>
